@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click and remove</title>
+</head>
+
+<body>
+
+<script>
+    let employees = [
+        {name: 'employee1', age: 30, salary: 400},
+        {name: 'employee2', age: 31, salary: 500},
+        {name: 'employee3', age: 32, salary: 600},
+    ];
+
+    let body = document.querySelector('body');
+    let div = document.createElement('div');
+    body.appendChild(div);
+
+    for(let employer of employees){
+        let ul = document.createElement('ul');
+        div.appendChild(ul);
+
+        let li1 = document.createElement('li');
+        li1.innerHTML = employer.name +' ';
+        ul.appendChild(li1);
+        let span1 = document.createElement('span');
+        span1.innerHTML = li1.innerHTML;
+        li1.innerHTML ='';
+        li1.appendChild(span1);
+
+        let link1 = document.createElement('a');
+        link1.href = '#';
+        link1.innerHTML = 'удалить';
+        li1.appendChild(link1);
+        link1.addEventListener('click',del);
+        span1.addEventListener('click', func);
+
+
+        let li2 = document.createElement('li');
+        li2.innerHTML = employer.age +' ';
+        ul.appendChild(li2)
+        let span2 = document.createElement('span');
+        span2.innerHTML = li2.innerHTML;
+        li2.innerHTML ='';
+        li2.appendChild(span2);
+
+        let link2 = document.createElement('a');
+        link2.href = '#';
+        link2.innerHTML = 'удалить';
+        li2.appendChild(link2);
+        link2.addEventListener('click',del);
+        span2.addEventListener('click', func);
+
+
+        let li3 = document.createElement('li');
+        li3.innerHTML = employer.salary +' ';
+        ul.appendChild(li3)
+        let span3 = document.createElement('span');
+        span3.innerHTML = li3.innerHTML;
+        li3.innerHTML ='';
+        li3.appendChild(span3);
+
+        let link3 = document.createElement('a');
+        link3.href = '#';
+        link3.innerHTML = 'удалить';
+        li3.appendChild(link3);
+        link3.addEventListener('click',del);
+        span3.addEventListener('click', func);
+    };
+
+    function func(){
+        let input = document.createElement('input');
+        input.value = this.innerHTML;
+        this.innerHTML='';
+        this.removeEventListener('click',func);
+
+        let self = this;
+        input.addEventListener('blur', function(){
+            self.innerHTML = input.value + ' ';
+        });
+        this.appendChild(input);
+    }
+
+    function del(event){
+        this.parentElement.remove();
+        event.preventDefault();
+    }
+
+    let inp1 = document.createElement ('input');
+    let inp2 = document.createElement ('input');
+    let inp3 = document.createElement ('input');
+
+    inp1.placeholder = 'введите имя';
+    inp2.placeholder = 'введите возраст';
+    inp3.placeholder = 'введите зп';
+
+    body.appendChild(inp1);
+    body.appendChild(inp2);
+    body.appendChild(inp3);
+
+    let button = document.createElement ('button');
+    button.innerHTML = 'добавить';
+    body.appendChild(button);
+
+    button.addEventListener('click', function(){
+        let ul = document.createElement('ul');
+        div.append(ul);
+        let newLi1 = document.createElement('li');
+        let newLi2 = document.createElement('li');
+        let newLi3 = document.createElement('li');
+
+        newLi1.innerHTML = inp1.value;
+        newLi2.innerHTML = inp2.value;
+        newLi3.innerHTML = inp3.value;
+
+        inp1.value ='';
+        inp2.value ='';
+        inp3.value ='';
+
+        let span1 = document.createElement('span');
+        span1.innerHTML = newLi1.innerHTML + ' ';
+        newLi1.innerHTML ='';
+        newLi1.appendChild(span1);
+        let link1 = document.createElement('a');
+        link1.href = '#';
+        link1.innerHTML = 'удалить';
+        newLi1.appendChild(link1);
+        link1.addEventListener('click',del);
+        span1.addEventListener('click', func);
+
+        let span2 = document.createElement('span');
+        span2.innerHTML = newLi2.innerHTML + ' ';
+        newLi2.innerHTML ='';
+        newLi2.appendChild(span2);
+
+        let link2 = document.createElement('a');
+        link2.href = '#';
+        link2.innerHTML = 'удалить';
+        newLi2.appendChild(link2);
+        link2.addEventListener('click',del);
+        span2.addEventListener('click', func);
+
+        let span3 = document.createElement('span');
+        span3.innerHTML = newLi3.innerHTML + ' ';
+        newLi3.innerHTML ='';
+        newLi3.appendChild(span3);
+
+        let link3 = document.createElement('a');
+        link3.href = '#';
+        link3.innerHTML = 'удалить';
+        newLi3.appendChild(link3);
+        link3.addEventListener('click',del);
+        span3.addEventListener('click', func);
+
+        ul.appendChild(newLi1);
+        ul.appendChild(newLi2);
+        ul.appendChild(newLi3);
+    });
+
+</script>
+</body>
+
+</html>
+
+<style>
+    td {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+
+</script>
+</body>
+
+
+</html>
